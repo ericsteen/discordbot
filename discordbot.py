@@ -1,4 +1,4 @@
-import os
+1import os
 import requests
 import discord
 import responses
@@ -6,25 +6,23 @@ from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-#scopes = "user-library-read"
-#sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=clientID,
-#                                               client_secret=clientSilent,
-#                                              scope=scopes))
-
-#spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-
-#results = spotify.artist_albums(birdy_uri, album_type='album')
-#albums = results['items']
-#while results['next']:
-#    results = spotify.next(results)
-#    albums.extend(results['items'])
-
-#for album in albums:
-#    print(album['name'])
-
 dotaUpdateUrl = "https://isthepatchout.com"
 
 print(dotaUpdateUrl)
+
+ytdl_opts={
+    'format': 'bestaudio/best',
+    'outtmpl': 'tmp/%(extractor)s-%(id)s-%(title)s.%(ext)s',
+    'restrictfilenames': True,
+    'nocheckcertificate': True,
+    'ignoreerrors': False,
+    'logtostderr': False,
+    'quiet': True,
+    'default_search':'auto',
+    'source_address': '0.0.0.0'
+        }
+ytdl = YoutubeDL(ytdl_opts)
+
 
 def ReadTokens():
     TOKEN = os.getenv('DISCORD_TOKEN')
@@ -36,15 +34,6 @@ def SpotSearch():
     pass
 def SpotDisplay():
     pass
-
-#async def send_message(message, user_message):
-#    try:
-#        response = responses.get_response(user_message)
-#        await message.author.send(response)
-#    except Exception as e:
-#        print(e)
-
-
 
 def runDiscordBot():
     clientToken, clientID = ReadTokens()
@@ -80,6 +69,12 @@ def runDiscordBot():
             audio_sources = voice_client.source.audio_source
         print(f'bro really said "{user_message}" ({channel})')
         await send_message(message, user_message)
+
+
+    @client.event
+    async def on_member_join(member):
+        print(f'{member} joined')
+        await message.channel.send('{member} has joined. Another wanderer, here to lick my father\'s boots. Good job')
 
         
     print(clientToken)
