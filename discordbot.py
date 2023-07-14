@@ -27,18 +27,6 @@ dotaUpdateUrl = "https://isthepatchout.com"
 print(dotaUpdateUrl)
 
 def ReadTokens():
-#    idFile = open("id.txt", "r")
-#    cli_id = idFile.readline()
-#    cli_tok = idFile.readline()
-#    idFile.close()
-#    print(cli_id)
-#    cli_id = cli_id.split("=")[1]
-#    print(cli_id)
-#    cli_tok = cli_tok.split("=")[1]
-#    return cli_id, cli_tok
-#    #reads tokens from file, file looks like this
-#    #client_secret=xxxxxx
-#    #client_id=xxxxxx
     TOKEN = os.getenv('DISCORD_TOKEN')
     ID = os.getenv('DISCORD_ID')
     return TOKEN, ID
@@ -82,12 +70,19 @@ def runDiscordBot():
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel)
-
+        if user_message == "$devices" and message.author.voice:
+            voice_client = discord.utils.get(client.voice_clients)
+            audio_sources = voice_client.source.audio_source
+            print("AUDIO_SOURCES: ")
+            for audio_source in audio_sources:
+                print(audio_source.title)
+            
+            audio_sources = voice_client.source.audio_source
         print(f'bro really said "{user_message}" ({channel})')
         await send_message(message, user_message)
 
         
-
+    print(clientToken)
     client.run(clientToken)
 
 
