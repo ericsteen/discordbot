@@ -59,6 +59,8 @@ def runDiscordBot():
         username = str(message.author)
         user_message = str(message.content)
         channel = str(message.channel)
+            if user_message.split(" ")[0] == '!play':
+                ytdl.ytdl(username, user_message, channel)
         if user_message == "$devices" and message.author.voice:
             voice_client = discord.utils.get(client.voice_clients)
             audio_sources = voice_client.source.audio_source
