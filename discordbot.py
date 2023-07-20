@@ -22,7 +22,7 @@ def runDiscordBot():
     @bot.event
     async def on_ready():
        print(f'{bot.user.name} has arrived')
-       print(f'this is {bot.user.name})
+       print(f'this is {bot.user.name}')
 
     @bot.command()
     async def play(ctx, url):
