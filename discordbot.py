@@ -11,13 +11,16 @@ yt_opts = {
     'output': ''
         }
 
+ffmpeg_options = {
+
+        }
+
 
 TOKEN = os.getenv('DISCORD_TOKEN')
 def runDiscordBot():
     intents = discord.Intents.default()
     intents.message_content = True
     bot = commands.Bot(command_prefix='!', intents=intents)
-
 
     @bot.event
     async def on_ready():
@@ -33,26 +36,11 @@ def runDiscordBot():
         else:
             print('failed to join voice channel')
 
+        with yt_dlp.YoutubeDL(yt_opts) as ydl:
+            song_info = ydl.extract_info(url, download=False)
 
-        ytdl = yt_dlp.YoutubeDL(yt_opts)
-        info = ytdl.extract_info(url, download=False)
-        print(info)
-        audio_url = info['formats'][0]['url']
-
-        print(url)
-        print(audio_url)
-              #yt_dlp_info    = subprocess.Popen([
-        yt_dlp_process = subprocess.Popen(['yt-dlp','-f','ba','-o','-', audio_url], stdout=subprocess.PIPE)
-        bot_audio = discord.FFmpegPCMAudio(yt_dlp_process.stdout)
-        voice_client.play(bot_audio)
-
-        #ytdl = yt_dlp.YoutubeDL(yt_opts)
-        #info = ytdl.extract_info(url, download=False)
-        #audio_url = info['formats'][0]['url']
-        #breakpoint()
-        #voice_client.play(discord.FFmpegPCMAudio(audio_url))
-        #stream = ytdl.download(url)
-        #voice_client.play(discord.FFmpegOpusAudio(stream, *, executable='ffmpeg', pipe=True))
+        ctx.voice_client.play(discord.FFmpegPCMAudio(song_info['url']))
+        #ctx.voice_client.play(discord.FFmpegPCMAudio(song_info['url'], **ffmpeg_options))
 
     @bot.command()
     async def stop(ctx):
