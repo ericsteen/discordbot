@@ -38,7 +38,12 @@ def runDiscordBot():
 
         with yt_dlp.YoutubeDL(yt_opts) as ydl:
             song_info = ydl.extract_info(url, download=False)
-
+        #print(f'\n\n\n\n{}\n\n\n\n')
+        print(f'\n\n\n\n{song_info}\n\n\n\n') 
+        print(f'\n\n\n\n{url}\n\n\n\n')
+        print(f"\n\n\n\n\n\n\n")
+        print('URL IS HERE')
+        print(song_info["url"])
         ctx.voice_client.play(discord.FFmpegPCMAudio(song_info['url']))
         #ctx.voice_client.play(discord.FFmpegPCMAudio(song_info['url'], **ffmpeg_options))
 
