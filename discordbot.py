@@ -27,6 +27,7 @@ def runDiscordBot():
     @bot.event
     async def on_ready():
        print(f'{bot.user.name} has arrived')
+       await bot.load_extension('cogs.Music')
        print(f'this is {bot.user.name}')
 
     @bot.command()
