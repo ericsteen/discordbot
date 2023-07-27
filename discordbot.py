@@ -17,8 +17,6 @@ ffmpeg_options = {
 
 
 TOKEN = os.getenv('DISCORD_TOKEN')
-#queue = asyncio.Queue()
-#next = asyncio.Event()
 def runDiscordBot():
     intents = discord.Intents.default()
     intents.message_content = True
