@@ -25,7 +25,8 @@ def runDiscordBot():
     @bot.event
     async def on_ready():
        print(f'{bot.user.name} has arrived')
-       await bot.load_extension('cogs.Music')
+       #await bot.load_extension('cogs.Music')
+       await load_cogs(bot)
        print(f'this is {bot.user.name}')
 
     @bot.command()
@@ -50,6 +51,12 @@ def runDiscordBot():
             await voice_client.disconnect()
 
     bot.run(TOKEN)
+
+async def load_cogs(bot):
+    for filename in os.listdir('./cogs'):
+        if filename[:-3] == '.py':
+            await bot.load_extension(f'cogs{filename[:-3]}')
+
 
 if __name__ == '__main__':
     runDiscordBot()
