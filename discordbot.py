@@ -4,6 +4,7 @@ import yt_dlp
 import os
 import dotenv
 import subprocess
+import logging
 
 yt_opts = {
     'format': 'bestaudio', 
@@ -21,6 +22,8 @@ def runDiscordBot():
     intents = discord.Intents.default()
     intents.message_content = True
     bot = commands.Bot(command_prefix='!', intents=intents)
+
+    ytdlp_logs()
 
     @bot.event
     async def on_ready():
@@ -56,6 +59,14 @@ async def load_cogs(bot):
     for filename in os.listdir('./cogs'):
         if filename[:-3] == '.py':
             await bot.load_extension(f'cogs{filename[:-3]}')
+
+def ytdlp_logs():
+    logger = logging.getLogger('yt_dlp')
+    logger.setLevel(logging.DEBUG)
+    handler = logging.StreamHandler()
+    formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s', datefmt='%Y-%m%-%d %H:%M:%S')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 
 if __name__ == '__main__':
