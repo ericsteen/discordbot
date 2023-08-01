@@ -5,6 +5,7 @@ import os
 import dotenv
 import subprocess
 import logging
+import asyncio
 
 yt_opts = {
     'format': 'bestaudio', 
@@ -29,15 +30,24 @@ def runDiscordBot():
     async def on_ready():
        print(f'{bot.user.name} has arrived')
        #await bot.load_extension('cogs.Music')
-       await load_cogs(bot)
+       #await load_cogs(bot)
        print(f'this is {bot.user.name}')
+
+    @bot.event
+    async def join(ctx):
+        if not ctx.voice_client:
+            pass
+            
 
     @bot.command()
     async def play(ctx, url):
         if ctx.author.voice:
-            voice_channel = ctx.author.voice.channel
-            voice_client = await voice_channel.connect()
-            print('joined voice channel')
+            if not ctx.voice_client:
+                voice_channel = ctx.author.voice.channel
+                voice_client = await voice_channel.connect()
+                print('joined voice channel')
+            else:
+                pass #probably not needed
         else:
             print('failed to join voice channel')
 
