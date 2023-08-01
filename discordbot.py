@@ -36,8 +36,7 @@ def runDiscordBot():
     @bot.event
     async def join(ctx):
         if not ctx.voice_client:
-            pass
-            
+           pass 
 
     @bot.command()
     async def play(ctx, url):
@@ -56,6 +55,17 @@ def runDiscordBot():
         print(song_info["url"])
         ctx.voice_client.play(discord.FFmpegPCMAudio(song_info['url']))
         #ctx.voice_client.play(discord.FFmpegPCMAudio(song_info['url'], **ffmpeg_options))
+
+    async def player_loop(self):
+        await self.bot.wait_until_ready()
+
+        while not self.bot.is_closed():
+            self.next.clear()
+            async with timeout(60):
+                source = await self.queue.get()
+            
+            if not isinstance(source, YTDLSource):
+
 
     @bot.command()
     async def stop(ctx):
