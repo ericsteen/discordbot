@@ -65,7 +65,7 @@ def runDiscordBot():
                 source = await self.queue.get()
             
             if not isinstance(source, YTDLSource):
-
+                pass
 
     @bot.command()
     async def stop(ctx):
