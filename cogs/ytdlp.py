@@ -31,3 +31,8 @@ class musicPlayer():
             async with timeout(3):
                 source = await self.queue.get()
 
+    @commands.command(name='play', aliases=['sing','p'], description="plays stream from yt")
+    async def play(self, ctx, *, search: str):
+
+
+
