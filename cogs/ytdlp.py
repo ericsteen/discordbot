@@ -54,4 +54,30 @@ class musicPlayer():
             await ctx.invoke(self.connect)
 
 
+    @commands.command(name='pause', description='pauses stream')
+    async def pause(self,ctx):
+        pass
+
+    @commands.command(name='resume', description='resumes stream')
+    async def resume(self,ctx):
+        pass
+
+    @commands.command(name='remove', aliases=['rm', 'rem', 'dequeue', 'deque'], description='removes song from queue at specified index')
+    async def remove(self,ctx,index: int=None):
+        pass
+
+    @commands.command(name='clear', aliases=['clr', 'cl', 'cr'], description='clears queue')
+    async def clear(self,ctx):
+        pass
+
+    @commands.command(name='queue', aliases=['q', 'playlist', 'que'], description='shows queue')
+    async def queue(self,ctx):
+        pass
+
+    @commands.command(name='np', aliases=['song', 'current', 'playing'], description='shows current stream')
+    async def now_playing(self,ctx):
+        pass
+
+
+
 
