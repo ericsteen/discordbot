@@ -78,6 +78,10 @@ class musicPlayer():
     async def now_playing(self,ctx):
         pass
 
+    @commands.command(name='skip', description='skips current stream')
+    aync def skip(self,ctx):
+        pass
+
 
 
 
