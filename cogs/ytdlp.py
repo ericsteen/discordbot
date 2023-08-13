@@ -84,6 +84,7 @@ class musicPlayer():
 
 
 #make seperate function for adding songs to queue for both yt and spotify
+#same or different cog?
 
 
 
