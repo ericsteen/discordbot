@@ -85,8 +85,11 @@ class musicPlayer():
 
 #make seperate function for adding songs to queue for both yt and spotify
 #queue should be of play commands between different sources
+#might require all skips to be a stop. have to tinker with spotify api
+#make it first then patch it in later
 #same or different cog?
 #want to keep all music in one channel, see if theres way to keep it in one channel without if channel
+
 
 
 
