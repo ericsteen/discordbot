@@ -91,6 +91,7 @@ class musicPlayer():
 #want to keep all music in one channel, see if theres way to keep it in one channel without if channel
 #add shuffle feature
 #want to add playlist feature for locally stored playlists to go between spotify and youtube, but it might get confusing, think it over
+#no apple music
 
 
 
