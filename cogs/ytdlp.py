@@ -92,7 +92,7 @@ class musicPlayer():
 #add shuffle feature
 #want to add playlist feature for locally stored playlists to go between spotify and youtube, but it might get confusing, think it over
 #no apple music
-
+#disable play command when playing playlist. 
 
 
 
