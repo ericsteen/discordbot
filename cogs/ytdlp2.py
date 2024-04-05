@@ -247,6 +247,7 @@ class Music(commands.Cog):
 
         if vc:
             if vc.channel.id == channel.id:
+                print('channel id is ' channel.id)
                 return
             try:
                 await vc.move_to(channel)
