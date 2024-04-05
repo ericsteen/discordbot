@@ -1,0 +1,53 @@
+import discord
+from discord.ext import commands
+import yt_dlp
+from yt_dlp import YoutubeDL
+
+yt_opts = {
+    'format' : 'bestaudio',
+    'extract-audio': 'True',
+    'output' : ''
+        }
+
+
+                                                                                                                        
+class ytdlp:
+
+    __slots__ = ('bot', 'guild')
+
+    def __init__(self, ctx):
+        self.guild = ctx.guild
+        self.bot = ctx.bot
+
+    @commands.command(name='join', aliases=['connect', 'j'], description='connects to voice channel')
+    async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
+        if not channel:
+            try:
+                channel = ctx.author.voice.channel
+            except AttributeError:
+                raise InvalidVoiceChannel('No channel to join')
+
+        vc = ctx.voice_client
+
+        if vc:
+            if vc.channel.id == channel.id:
+                return
+            await vc.move_to(channel)
+        else:
+            await channel.connect()
+
+    @commands.command(name='play', aliases=['sing', 'p'], description='streams audio')
+    async def play_(self, ctx, *, search: str):
+
+        await ctx.trigger_typing()
+
+        vc = ctx.voice_client
+
+        if not vc:
+            await ctx.invoke(self.connect_)
+
+
+def setup(bot):
+    bot.add_cog(ytdlp(bot))
+
+        
