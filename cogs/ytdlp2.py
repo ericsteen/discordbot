@@ -39,11 +39,12 @@ ytdl = yt_dlp.YoutubeDL(ytdlopts)
 
 class VoiceConnectionError(commands.CommandError):
     """Custom Exception class for connection errors."""
+    print('error connecting to voice')
 
 
 class InvalidVoiceChannel(VoiceConnectionError):
     """Exception for cases of invalid Voice Channels."""
-
+    print('voice channel invalid')
 
 class YTDLSource(discord.PCMVolumeTransformer):
 
