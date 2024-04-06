@@ -47,7 +47,7 @@ class InvalidVoiceChannel(VoiceConnectionError):
     print('voice channel invalid')
 
 class YTDLSource(discord.PCMVolumeTransformer):
-
+    print('attempting YTDLSource instance')
     def __init__(self, source, *, data, requester):
         super().__init__(source)
         self.requester = requester
@@ -81,7 +81,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             print('got entries')
             # take first item from a playlist
             data = data['entries'][0]
-            print(data)
+            #print(data)
 
         embed = discord.Embed(title="", description=f"Queued [{data['title']}]({data['webpage_url']}) [{ctx.author.mention}]", color=discord.Color.green())
         await ctx.send(embed=embed)
