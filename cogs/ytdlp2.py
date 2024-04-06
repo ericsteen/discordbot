@@ -236,7 +236,7 @@ class Music(commands.Cog):
         This command also handles moving the bot to different channels.
         """
         print('attempting to connect to channel')
-        breakpoint()
+        #breakpoint()
         if not channel:
             try:
                 channel = ctx.author.voice.channel
