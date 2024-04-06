@@ -235,6 +235,7 @@ class Music(commands.Cog):
             will be made.
         This command also handles moving the bot to different channels.
         """
+        print('attempting to connect to channel')
         if not channel:
             try:
                 channel = ctx.author.voice.channel
@@ -242,7 +243,7 @@ class Music(commands.Cog):
                 embed = discord.Embed(title="", description="No channel to join. Please call `,join` from a voice channel.", color=discord.Color.green())
                 await ctx.send(embed=embed)
                 raise InvalidVoiceChannel('No channel to join. Please either specify a valid channel or join one.')
-
+        print('getting voice client')
         vc = ctx.voice_client
 
         if vc:
@@ -255,6 +256,7 @@ class Music(commands.Cog):
                 raise VoiceConnectionError(f'Moving to channel: <{channel}> timed out.')
         else:
             try:
+                print('issue connecting')
                 await channel.connect()
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
