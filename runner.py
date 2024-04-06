@@ -14,11 +14,13 @@ from discord.ext import commands
 TOKEN = os.getenv('DISCORD_TOKEN')
 async def runDiscordBot():
     #Pre = Prepass()
+    #breakpoint()
     intents = discord.Intents.default()
     intents.message_content = True
     bot = commands.Bot(command_prefix='!', intents=intents)
     await load(bot)
-    await bot.start(TOKEN)
+    await bot.start(TOKEN, reconnect=True)
+    print(bot.user + 'has logged on')
     #await bot.load_extension('ytdlp')
     #@bot.event
     #async def on_ready():
